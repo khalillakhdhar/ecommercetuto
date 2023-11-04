@@ -14,6 +14,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
 
@@ -38,6 +39,8 @@ public class Client extends AuditModel implements Serializable {
 	int age;
 @JsonBackReference
 @ManyToMany(mappedBy = "clients")
+@JsonIgnoreProperties({"applications","hibernateLazyInitializer"})
+
 	private Set<Commande> commandes=new HashSet<Commande>();
 
 	

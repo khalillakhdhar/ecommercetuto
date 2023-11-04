@@ -10,6 +10,7 @@ import javax.persistence.ManyToMany;
 import javax.validation.constraints.Min;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
 
@@ -27,6 +28,8 @@ public class Produit extends AuditModel implements Serializable {
 	@Min(value = 0)
 	private int quantite;
 	@JsonBackReference
+	@JsonIgnoreProperties({"applications","hibernateLazyInitializer"})
+
 	@ManyToMany(mappedBy = "produits")
 		private Set<Commande> commandes=new HashSet<Commande>();
 

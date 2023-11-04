@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.Min;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
@@ -20,9 +21,13 @@ public class Commande extends AuditModel implements Serializable {
 	private int quantite;
 	@JsonManagedReference
 	@ManyToMany
+	@JsonIgnoreProperties({"applications","hibernateLazyInitializer"})
+
 	List<Client> clients=new ArrayList<Client>();
 	@JsonManagedReference
 	@ManyToMany
+	@JsonIgnoreProperties({"applications","hibernateLazyInitializer"})
+
 	List<Produit> produits=new ArrayList<Produit>();
 	private String etat;
 }
